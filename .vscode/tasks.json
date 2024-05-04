@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/Test-9.sln",
+        "${workspaceFolder}/test_dotnet-microservice.sln",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary;ForceNoAlign"
       ],
@@ -23,7 +23,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/Test-9.sln",
+        "${workspaceFolder}/test_dotnet-microservice.sln",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary;ForceNoAlign"
       ],
@@ -37,7 +37,7 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/Test-9.sln"
+        "${workspaceFolder}/test_dotnet-microservice.sln"
       ],
       "problemMatcher": "$msCompile"
     }
