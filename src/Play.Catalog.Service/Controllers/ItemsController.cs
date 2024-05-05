@@ -47,9 +47,15 @@ namespace Play.Catalog.Service.Controllers
 
         // GET /items/{id}
         [HttpGet("{id}")]
-        public ItemDto GetById(Guid id)
+        public ActionResult<ItemDto> GetById(Guid id)
         {
             var item = items.Where(item => item.Id == id).SingleOrDefault();
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
             return item;
         }
 
@@ -58,14 +64,14 @@ namespace Play.Catalog.Service.Controllers
         public ActionResult<ItemDto> Post(CreateItemDto createItemDto)
         {
             var item = new ItemDto(
-                Guid.NewGuid(), 
+                Guid.NewGuid(),
                 createItemDto.Name,
                 createItemDto.Description,
                 createItemDto.Price,
                 DateTimeOffset.UtcNow
             );
             items.Add(item);
-            return CreatedAtAction(nameof(GetById), new { id = item.Id}, item);
+            return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
         }
 
         [HttpPut("{id}")]
@@ -80,9 +86,9 @@ namespace Play.Catalog.Service.Controllers
             };
             var index = items.FindIndex(existingItem => existingItem.Id == id);
             items[index] = updatedItem;
-            return NoContent(); 
+            return NoContent();
         }
-        
+
         // DELETE /items/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
